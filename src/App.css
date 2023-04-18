@@ -1,42 +1,74 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/*
+Use % for width or height of containers, divs, or other large components. 
+Use vh and vw to size sections as a percentage of the screen size 
+(for example, I use this a lot to force sections with background images to be full-screen (vh) 
+and/or full-width (vw)) Only use px for very minor things, for example: border-width.
+*/
+@font-face {
+  font-family: Ginger;
+  src: url(./fonts/ginger-modern-stylish-font/Ginger.otf);
+}
+
+@font-face {
+  font-family: Satoshi-light;
+  src: url(./fonts/Satoshi_Complete/Fonts/OTF/Satoshi-Light.otf);
+}
+
+@font-face {
+  font-family: Satoshi-regular;
+  src: url(./fonts/Satoshi_Complete/Fonts/OTF/Satoshi-Regular.otf);
+}
+
+@font-face {
+  font-family: Satoshi-lightItalic;
+  src: url(./fonts/Satoshi_Complete/Fonts/OTF/Satoshi-LightItalic.otf);
+}
+
+:root {
+  --pop-color: #E961FF;
+  --summary-line-height: 30px;
+}
+
+body {
+  background-color: #F1F1F1;
+  height: 367vh;
+}
+
+h1 {
+  font-family: Ginger;
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 119px;
+  color: black;
+  align-items: center;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+h2 {
+  font-family: Satoshi;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 64px;
+  line-height: 80px;
+  color: white;
+  align-items: center;
+  text-align: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h3 {
+  font-family: Satoshi;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 54px;
+  display: flex;
+  align-items: flex-end;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.nav_title{
+  font-family: Satoshi;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 27px;
+  color: black;
 }
