@@ -30,11 +30,11 @@ const MoodBoardPicture = ({ img }: IMoodBoardPicture) => {
                 <DialogTitle style={{ display: "none" }} />
                 <img src={src} alt={alt} />
                 <div className={styles["action-btn-container"]}>
-                    <Button variant="outline" className={styles["action-btn"]} title={t("virtual_desk.download")}>
-                        <Save color="var(--background)" />
-                    </Button>
                     <Button variant="outline" className={styles["action-btn"]} title={t("virtual_desk.upload")}>
                         <Upload color="var(--background)" />
+                    </Button>
+                    <Button variant="outline" className={styles["action-btn"]} title={t("virtual_desk.download")}>
+                        <Save color="var(--background)" />
                     </Button>
                 </div>
             </DialogContent>
