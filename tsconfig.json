@@ -5,7 +5,10 @@
         "sourceRoot": "/",
         "target": "ESNext",
         "lib": ["dom", "dom.iterable", "esnext"],
-        "baseUrl": "src",
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./src/*"]
+        },
         "allowJs": false,
         "skipLibCheck": true,
         "esModuleInterop": true,
