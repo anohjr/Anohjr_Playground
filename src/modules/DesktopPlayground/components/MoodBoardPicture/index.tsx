@@ -1,5 +1,5 @@
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
-import { MoodboardPicture } from "../utils";
+import { MoodboardPicture } from "../../utils";
 import { Upload } from "@mynaui/icons-react";
 import styles from "./style.module.scss";
 import { Button } from "@/components/ui/button";

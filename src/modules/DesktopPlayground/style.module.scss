@@ -1,6 +1,11 @@
 .desktop-playground {
     height: 100%;
 
+    .playground-body {
+        padding-inline: 1rem;
+        padding-block: 0.5rem;
+    }
+
     .moodboard-container {
         display: flex;
         justify-content: center;

@@ -41,7 +41,7 @@ const TypingTitle: React.FC<ITypingTitle> = ({ children, typingDelay = 200, onCh
         if (!isTyping && !isFocused) {
             const blinkingInterval = setInterval(() => {
                 setShowUnderscore((prev) => !prev);
-            }, 500);
+            }, 600);
 
             return () => clearInterval(blinkingInterval);
         }
