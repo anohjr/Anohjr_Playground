@@ -1,3 +1,7 @@
-@import './globals';
-@import './mixins';
-@import './variables';
+@use './_globals';
+@use './_mixins';
+@use './variables';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

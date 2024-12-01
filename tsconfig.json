@@ -1,18 +1,27 @@
 {
-  "compilerOptions": {
-    "target": "es6",
-    "module": "esnext",
-    "jsx": "react-jsx",
-    "strict": true,
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "paths": {
-      "@components/*": ["src/components/*"]
+    "compilerOptions": {
+        "sourceMap": true,
+        "inlineSources": true,
+        "sourceRoot": "/",
+        "target": "ESNext",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "baseUrl": "src",
+        "allowJs": false,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "react-jsx",
+        "noImplicitAny": false,
+        "types": ["vite/client"]
     },
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+    "include": ["src"],
+    "exclude": ["node_modules", "build", "dist", "cypress.config.ts", "cypress"]
 }
