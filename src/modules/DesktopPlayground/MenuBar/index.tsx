@@ -1,9 +1,9 @@
-import TodaysDate from "./components/TodaysDate";
+import TodaysDate from "./TodaysDate";
 import styles from "./style.module.scss";
 import DesktopAccessDisabledOutlinedIcon from "@mui/icons-material/DesktopAccessDisabledOutlined";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
-import ToggleTheme from "./components/ToggleTheme";
+import ToggleTheme from "./ToggleTheme";
 /**
  * Render top desktop menu bar
  */
