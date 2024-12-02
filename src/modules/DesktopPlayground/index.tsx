@@ -4,61 +4,52 @@ import { moodboard_pictures } from "./utils";
 import TypingTitle from "./TypingTitle";
 import MenuBar from "./MenuBar";
 import { DndContext, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
-import Draggable, { DraggableItem } from "@/components/shared/Draggable";
-import { useState } from "react";
+import Draggable from "@/components/shared/Draggable/Draggable";
+import { restrictToWindowEdges } from "@dnd-kit/modifiers";
+
+import classNames from "classnames";
+import useDraggableMethods from "@/components/shared/Draggable/useDraggableMethods";
 
 const DesktopPlayground = () => {
-    const [items, setItems] = useState<DraggableItem[]>([
-        { id: "1", x: 100, y: 100, children: <TypingTitle>Hello ! Welcome to my playground</TypingTitle> },
-        // { id: "2", x: 200, y: 200, children: <div style={circleStyle}>Circle</div> },
-        ...moodboard_pictures.map((img, index) => ({
-            id: `picture-${index}`,
-            x: 150 + index * 50, // position initiale, vous pouvez ajuster
-            y: 150,
-            children: <MoodBoardPicture img={img} key={img.id} />,
-        })),
-    ]);
+    const initialItems = moodboard_pictures.map((img, index) => ({
+        id: `picture-${img.id}`,
+        x: 150 + index * 220,
+        y: 150,
+        children: <MoodBoardPicture img={img} key={img.id} />,
+    }));
+
+    const { items, activeImgId, handleDragEnd, handleDragStart } = useDraggableMethods(initialItems);
 
     const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 8 } }));
-
-    const handleDragEnd = (event: any) => {
-        const { active, delta } = event;
-        const id = active.id;
-
-        setItems((prevItems) =>
-            prevItems.map((item) =>
-                item.id === id
-                    ? {
-                          ...item,
-                          x: item.x + delta.x,
-                          y: item.y + delta.y,
-                      }
-                    : item
-            )
-        );
-    };
 
     return (
         <div className={styles["desktop-playground"]}>
             <MenuBar />
-            <div className={styles["playground-body"]}>
-                <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
-                    {items.map((item) => (
-                        <div onClick={() => console.log("click")} key={item.id}>
+            <TypingTitle>Hello ! Welcome to my playground</TypingTitle>
+
+            <DndContext
+                onDragEnd={handleDragEnd}
+                onDragStart={handleDragStart}
+                sensors={sensors}
+                modifiers={[restrictToWindowEdges]}
+            >
+                {items.map((item) => {
+                    const isActive = activeImgId === item.id; // dragging img
+                    return (
+                        <div
+                            key={item.id}
+                            className={classNames({
+                                [styles["picture-draggable"]]: true,
+                                [styles["active"]]: isActive,
+                            })}
+                        >
                             <Draggable id={item.id} x={item.x} y={item.y}>
                                 {item.children}
                             </Draggable>
                         </div>
-                    ))}
-                    {/* <div className={styles["moodboard-container"]}>
-                        <div className={styles["moodboard-pictures"]}>
-                            {moodboard_pictures.map((img) => (
-                                <MoodBoardPicture img={img} />
-                            ))}
-                        </div>
-                    </div> */}
-                </DndContext>
-            </div>
+                    );
+                })}
+            </DndContext>
         </div>
     );
 };

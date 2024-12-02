@@ -12,3 +12,4 @@ export const moodboard_pictures: MoodboardPicture[] = [
     { id: "artic_fox", src: artic_fox, alt: "Artic fox. Anohjr's github profile picture" },
     { id: "ectoplasma", src: ectoplasma, alt: "Ectoplasma sitting on stairs" },
 ];
+

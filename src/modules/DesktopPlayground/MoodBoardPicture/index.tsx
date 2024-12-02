@@ -20,7 +20,7 @@ const MoodBoardPicture = ({ img }: IMoodBoardPicture) => {
     const [modalType, setModalType] = useState("");
     const [t] = useTranslation();
     const { src, alt } = img;
-    console.log(modalType);
+
     return (
         <Dialog>
             <DialogTrigger asChild>
