@@ -27,7 +27,8 @@ span {
     font-weight: 400;
 }
 
-.main-title {
-    font-size: 1.5rem;
-    font-weight: 200;
+svg,
+span {
+    transition: color 0.3s ease;
+    color: hsl(var(--foreground));
 }

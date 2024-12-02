@@ -9,7 +9,7 @@ const DesktopPlayground = () => {
         <div className={styles["desktop-playground"]}>
             <MenuBar />
             <div className={styles["playground-body"]}>
-                <TypingTitle>Anohjr's Virtual Desk</TypingTitle>
+                <TypingTitle>Hello you're welcome !</TypingTitle>
 
                 <div className={styles["moodboard-container"]}>
                     <div className={styles["moodboard-pictures"]}>

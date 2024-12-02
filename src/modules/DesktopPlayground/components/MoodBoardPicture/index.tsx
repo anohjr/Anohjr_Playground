@@ -1,11 +1,10 @@
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
 import { MoodboardPicture } from "../../utils";
-import { Upload } from "@mynaui/icons-react";
 import styles from "./style.module.scss";
 import { Button } from "@/components/ui/button";
-import { Save } from "@mynaui/icons-react";
 import { useTranslation } from "react-i18next";
-
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
+import UploadFileOutlinedIcon from "@mui/icons-material/UploadFileOutlined";
 interface IMoodBoardPicture {
     /**
      * Image data
@@ -30,11 +29,21 @@ const MoodBoardPicture = ({ img }: IMoodBoardPicture) => {
                 <DialogTitle style={{ display: "none" }} />
                 <img src={src} alt={alt} />
                 <div className={styles["action-btn-container"]}>
-                    <Button variant="outline" className={styles["action-btn"]} title={t("virtual_desk.upload")}>
-                        <Upload color="var(--background)" />
+                    <Button
+                        variant="outline"
+                        size="icon"
+                        className={styles["action-btn"]}
+                        title={t("virtual_desk.upload")}
+                    >
+                        <UploadFileOutlinedIcon />
                     </Button>
-                    <Button variant="outline" className={styles["action-btn"]} title={t("virtual_desk.download")}>
-                        <Save color="var(--background)" />
+                    <Button
+                        variant="outline"
+                        size="icon"
+                        className={styles["action-btn"]}
+                        title={t("virtual_desk.download")}
+                    >
+                        <FileDownloadOutlinedIcon />
                     </Button>
                 </div>
             </DialogContent>

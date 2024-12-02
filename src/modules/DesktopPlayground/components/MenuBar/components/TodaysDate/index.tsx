@@ -1,23 +1,38 @@
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
-import { fr } from "date-fns/locale";
+import { enUS, fr, de, es } from "date-fns/locale";
+import styles from "../../style.module.scss";
 
 const TodaysDate = () => {
-  const [currentDate, setCurrentDate] = useState('');
+    const [currentDate, setCurrentDate] = useState("");
+    const [locale, setLocale] = useState(fr);
 
-  useEffect(() => {
-    const updateDate = () => {
-      const now = new Date();
-      setCurrentDate(format(now, "eee d MMM HH:mm", { locale: fr }));
-    };
+    useEffect(() => {
+        const language = navigator.language.split("-")[0];
 
-    updateDate();
+        const localeMap = {
+            en: enUS,
+            fr: fr,
+            de: de,
+            es: es,
+        };
 
-    const interval = setInterval(updateDate, 1000);
-    return () => clearInterval(interval);
-  }, []);
+        setLocale(localeMap[language] || enUS);
+    }, []);
 
-  return <span>{currentDate}</span>;
+    useEffect(() => {
+        const updateDate = () => {
+            const now = new Date();
+            setCurrentDate(format(now, "eee d MMM HH:mm", { locale }));
+        };
+
+        updateDate();
+
+        const interval = setInterval(updateDate, 1000);
+        return () => clearInterval(interval);
+    }, [locale]);
+
+    return <span className={styles["todays-date"]}>{currentDate}</span>;
 };
 
 export default TodaysDate;
