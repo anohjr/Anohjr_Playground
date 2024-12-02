@@ -6,12 +6,18 @@ export interface DraggableItem {
     x: number;
     y: number;
     children: React.ReactNode;
+    /**
+     * Disable draggable
+     */
+    disabled?: boolean;
 }
+
 /**
  * Make a Draggable item
  */
-const Draggable = ({ id, x, y, children }: DraggableItem) => {
+const Draggable = ({ id, x, y, children, disabled = false }: DraggableItem) => {
     const { attributes, listeners, setNodeRef, transform } = useDraggable({ id });
+
     const style = {
         position: "absolute" as "absolute",
         left: transform ? x + transform.x : x,
@@ -19,8 +25,10 @@ const Draggable = ({ id, x, y, children }: DraggableItem) => {
         cursor: "grab",
     };
 
+    const eventListeners = disabled ? {} : listeners;
+
     return (
-        <div ref={setNodeRef} {...listeners} {...attributes} style={style}>
+        <div ref={setNodeRef} {...eventListeners} {...attributes} style={style}>
             {children}
         </div>
     );

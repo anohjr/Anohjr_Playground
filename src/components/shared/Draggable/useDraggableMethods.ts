@@ -44,7 +44,6 @@ const useDraggableMethods = (initialItems: DraggableItem[]) => {
                     : item
             )
         );
-        setActiveImgId(null);
     };
 
     const handleDragStart = (event: any) => {

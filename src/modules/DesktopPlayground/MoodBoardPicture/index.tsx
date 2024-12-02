@@ -5,26 +5,33 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import UploadFileOutlinedIcon from "@mui/icons-material/UploadFileOutlined";
-import { useState } from "react";
+import { SetStateAction } from "react";
 interface IMoodBoardPicture {
     /**
      * Image data
      */
     img: MoodboardPicture;
+    /**
+     * Save dialog open state
+     */
+    setIsDialogOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
 /**
  * Render image picture + related actions
  */
-const MoodBoardPicture = ({ img }: IMoodBoardPicture) => {
-    const [modalType, setModalType] = useState("");
+const MoodBoardPicture = ({ img, setIsDialogOpen }: IMoodBoardPicture) => {
     const [t] = useTranslation();
     const { src, alt } = img;
 
+    const handleClick = () => {
+        setIsDialogOpen(true);
+    }
+
     return (
-        <Dialog>
+        <Dialog onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
-                <img src={src} alt={alt} className={styles["picture"]} onClick={() => setModalType("hello")} />
+                <img src={src} alt={alt} className={styles["picture"]} onClick={handleClick}/>
             </DialogTrigger>
 
             <DialogContent className={styles["picture-modal"]}>
