@@ -5,8 +5,5 @@
     .picture-draggable {
         position: absolute;
         z-index: 1;
-        &.active {
-            z-index: 2;
-        }
     }
 }

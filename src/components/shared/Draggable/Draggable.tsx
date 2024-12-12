@@ -15,7 +15,7 @@ export interface DraggableItem {
 /**
  * Make a Draggable item
  */
-const Draggable = ({ id, x, y, children, disabled = false }: DraggableItem) => {
+const Draggable = React.memo(({ id, x, y, children, disabled = false }: DraggableItem) => {
     const { attributes, listeners, setNodeRef, transform } = useDraggable({ id });
 
     const style = {
@@ -32,6 +32,6 @@ const Draggable = ({ id, x, y, children, disabled = false }: DraggableItem) => {
             {children}
         </div>
     );
-};
+});
 
 export default Draggable;
