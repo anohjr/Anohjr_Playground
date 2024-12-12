@@ -3,7 +3,7 @@ import { throttle } from "lodash";
 import { PictureItem } from "@/modules/DesktopPlayground/utils";
 
 // Draggable methods
-const useDraggableMethods = (initialItems: PictureItem[]) => {
+export const useDraggableMethods = (initialItems: PictureItem[]) => {
     const [items, setItems] = useState<PictureItem[]>(initialItems);
 
     // When screen resize, make sure the image doesn't go out of the screen
@@ -88,5 +88,3 @@ const useDraggableMethods = (initialItems: PictureItem[]) => {
         handleDragStart,
     };
 };
-
-export default useDraggableMethods;
