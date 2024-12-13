@@ -17,7 +17,7 @@ export const moodboard_pictures: MoodboardPicture[] = [
 /**
  * Draggable item
  */
-export interface PictureItem {
+export interface DraggableItemData {
     id: string;
     /**
      * position x of the picture
@@ -30,7 +30,7 @@ export interface PictureItem {
     /**
      * Rendered component
      */
-    children: ReactNode;
+    children?: ReactNode;
     /**
      * Picture z-index
      */

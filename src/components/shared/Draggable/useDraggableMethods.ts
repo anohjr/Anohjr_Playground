@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import { throttle } from "lodash";
-import { PictureItem } from "@/modules/DesktopPlayground/utils";
+import { DraggableItemData } from "@/modules/DesktopPlayground/utils";
 
 // Draggable methods
-export const useDraggableMethods = (initialItems: PictureItem[]) => {
-    const [items, setItems] = useState<PictureItem[]>(initialItems);
+export const useDraggableMethods = (initialItems: DraggableItemData[], defaultItemsPos: DraggableItemData[]) => {
+    const [items, setItems] = useState<DraggableItemData[]>(initialItems);
 
     // When screen resize, make sure the image doesn't go out of the screen
     const handleResize = useCallback(() => {
@@ -82,9 +82,19 @@ export const useDraggableMethods = (initialItems: PictureItem[]) => {
         });
     }, []);
 
+    const handleResetInitialPos = () => {
+        localStorage.removeItem("items-position");
+        const defaultItems = defaultItemsPos.map((defItem) => {
+            const children = items.find((item) => item.id === defItem.id)?.children as ReactNode;
+            return { ...defItem, children };
+        });
+        setItems(defaultItems);
+    };
+
     return {
         items,
         handleDragEnd,
         handleDragStart,
+        handleResetInitialPos,
     };
 };

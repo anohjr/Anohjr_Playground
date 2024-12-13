@@ -1,7 +1,7 @@
 import { getJsonOrFalse } from "@/shared/helpers/utils";
 import { SetStateAction, useMemo } from "react";
 import MoodBoardPicture from "../MoodBoardPicture";
-import { MoodboardPicture } from "../utils";
+import { DraggableItemData, MoodboardPicture } from "../utils";
 
 interface InitialItemsProps {
     moodboard_pictures: MoodboardPicture[];
@@ -21,6 +21,9 @@ const useInitialItems = ({
 }: InitialItemsProps) => {
     const storedItemsPos = getJsonOrFalse(localStorage.getItem("items-position"));
 
+    const defaultItems: DraggableItemData[] = [];
+    const defaultItemsPos: DraggableItemData[] = [];
+
     const initialItems = useMemo(() => {
         const menuBarHeight = window.innerHeight * 0.25;
 
@@ -29,6 +32,24 @@ const useInitialItems = ({
 
         const startX = (window.innerWidth - gridWidth) / 2;
         const startY = (window.innerHeight - gridHeight) / 2 - menuBarHeight / 2;
+
+        moodboard_pictures.forEach((img, index) => {
+            const row = Math.floor(index / columns);
+            const col = index % columns;
+
+            const defaultPos = {
+                id: img.id,
+                x: startX + col * (imageSize + gap),
+                y: startY + row * (imageSize + gap),
+                zIndex: 1,
+            };
+            const defaultItem = {
+                ...defaultPos,
+                children: <MoodBoardPicture img={img} key={img.id} setIsDialogOpen={setIsDialogOpen} />,
+            };
+            defaultItemsPos.push(defaultPos);
+            defaultItems.push(defaultItem);
+        });
 
         if (storedItemsPos) {
             return storedItemsPos
@@ -40,22 +61,10 @@ const useInitialItems = ({
                 })
                 .filter(Boolean);
         }
+        return defaultItems;
+    }, [storedItemsPos]);
 
-        return moodboard_pictures.map((img, index) => {
-            const row = Math.floor(index / columns);
-            const col = index % columns;
-
-            return {
-                id: img.id,
-                x: startX + col * (imageSize + gap),
-                y: startY + row * (imageSize + gap),
-                children: <MoodBoardPicture img={img} key={img.id} setIsDialogOpen={setIsDialogOpen} />,
-                zIndex: 1,
-            };
-        });
-    }, []);
-
-    return { initialItems };
+    return { initialItems, defaultItemsPos };
 };
 
 export default useInitialItems;

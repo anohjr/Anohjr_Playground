@@ -4,10 +4,18 @@ import DesktopAccessDisabledOutlinedIcon from "@mui/icons-material/DesktopAccess
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import ToggleTheme from "./ToggleTheme";
+import ResetItemsPos from "./ResetItemsPos";
+
+interface IMenuBar {
+    /**
+     * Handle reset desk initial items position
+     */
+    handleResetDesk: () => void;
+}
 /**
  * Render top desktop menu bar
  */
-const MenuBar = () => {
+const MenuBar = ({ handleResetDesk }: IMenuBar) => {
     return (
         <div className={styles["menu-bar"]}>
             <div className={styles["menu-bar-left"]}>
@@ -25,6 +33,7 @@ const MenuBar = () => {
             </div>
             <div className={styles["menu-bar-right"]}>
                 <ToggleTheme />
+                <ResetItemsPos onClick={() => handleResetDesk()} />
                 <TodaysDate />
             </div>
         </div>

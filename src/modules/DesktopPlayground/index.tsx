@@ -13,9 +13,12 @@ import useInitialItems from "./hooks/useInitialPositions";
 const DesktopPlayground = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-    const { initialItems } = useInitialItems({ moodboard_pictures, setIsDialogOpen });
+    const { initialItems, defaultItemsPos } = useInitialItems({ moodboard_pictures, setIsDialogOpen });
 
-    const { items, handleDragEnd, handleDragStart } = useDraggableMethods(initialItems);
+    const { items, handleDragEnd, handleDragStart, handleResetInitialPos } = useDraggableMethods(
+        initialItems,
+        defaultItemsPos
+    );
 
     // Save position into local storage
     useEffect(() => {
@@ -27,7 +30,7 @@ const DesktopPlayground = () => {
 
     return (
         <div className={styles["desktop-playground"]}>
-            <MenuBar />
+            <MenuBar handleResetDesk={handleResetInitialPos} />
             <TypingTitle>Hello ! Welcome to my playground</TypingTitle>
 
             <DndContext
